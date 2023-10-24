@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    public Animation anim;
+    public Animator anim;
     
     void Start()
     {
         transform.Rotate(0, 90, 0);
-        anim.Play();
     }
 
     void Sprint()
     {
-        anim.Play();
+        anim.SetBool("isFollowingPlayer", true);
     }
 }
