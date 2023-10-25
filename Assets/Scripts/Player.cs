@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public bool doSprint;
     public Image staminaFill;
 
-    public AudioClip[] AudioClip;
+    public AudioClip[] audioClips;
     public AudioSource audioSource;
 
     public Transform cam;
@@ -22,11 +22,17 @@ public class Player : MonoBehaviour
     public float maxXRot;
     private float curXRot;
 
+    public Light light;
+    public int nextIntensity;
+
     public GameObject monster;
+    private int monsterNums = 1;
+    private int monstersSpawned = 0;
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        light.intensity = 0;
     }
 
     void Update()
@@ -55,7 +61,11 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Instantiate(monster, new Vector3(-67.5f, 0, 22.5f), Quaternion.identity);
+        if (monstersSpawned != monsterNums)
+        {
+            Instantiate(monster, new Vector3(-67.5f, 0, 22.5f), Quaternion.identity);
+            monstersSpawned += 1;
+        }
     }
 
     void Sprint()
@@ -104,7 +114,7 @@ public class Player : MonoBehaviour
 
     void Breath()
     {
-        audioSource.PlayOneShot(AudioClip[0]);
+        audioSource.PlayOneShot(audioClips[0]);
     }
 
     void Look()
@@ -118,5 +128,14 @@ public class Player : MonoBehaviour
         curXRot = Mathf.Clamp(curXRot, minXRot, maxXRot);
 
         cam.localEulerAngles = new Vector3(-curXRot, 0.0f, 0.0f);
+        if (Input.GetMouseButtonDown(0))
+        {
+            light.intensity = nextIntensity;
+            if (light.intensity == 0)
+                nextIntensity = 10;
+            else
+                nextIntensity = 0;
+            audioSource.PlayOneShot(audioClips[1]);
+        }
     }
 }
