@@ -7,21 +7,36 @@ public class Monster : MonoBehaviour
 {
     public Animator anim;
     public NavMeshAgent agent;
+    private bool followPlayer;
 
-    public Vector3 playerPos = GetComponent<Player>.transform.Position;
+    Collider[] hitColliders;
+
+    public float radius;
 
     void Start()
     {
         transform.Rotate(0, 90, 0);
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        agent.SetDestination(Player.Transform.Position);
+        hitColliders = Physics.OverlapSphere(transform.position, radius, 4);
+        Sprint();
+        if(followPlayer)
+            agent.SetDestination(GameManager.instance.player.transform.position);
     }
 
     void Sprint()
     {
-        anim.SetBool("isFollowingPlayer", true);
+        if(hitColliders.length > 0)
+        {
+            anim.SetBool("isFollowingPlayer", false);
+            followPlayer = false;
+        }
+        else
+        {
+            anim.SetBool("isFollowingPlayer", true);
+            followPlayer = true;
+        }
     }
 }
