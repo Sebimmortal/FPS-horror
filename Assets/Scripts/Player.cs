@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) == false && doSprint)
         {
             moveSpeed = 5;
-            curStamina += (1 * Time.deltaTime);
+            curStamina += (0.5f * Time.deltaTime);
 
             if (curStamina > maxStamina)
             {
@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
         if (doSprint == false)
         {
             moveSpeed = 2.5f;
-            curStamina += (0.5f * Time.deltaTime);
+            curStamina += (0.25f * Time.deltaTime);
             if (curStamina >= maxStamina)
             {
                 curStamina = maxStamina;

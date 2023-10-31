@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
         }
         else if(instance != this)
         {
-            Debug.log("Instance already exists, Destroying object");
+            Debug.Log("Instance already exists, Destroying object");
             Destroy(this);
         }
     }

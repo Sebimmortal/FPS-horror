@@ -9,9 +9,9 @@ public class Monster : MonoBehaviour
     public NavMeshAgent agent;
     private bool followPlayer;
 
-    Collider[] hitColliders;
-
     public float radius;
+
+    private float distanceToPlayer;
 
     void Start()
     {
@@ -20,7 +20,7 @@ public class Monster : MonoBehaviour
 
     void Update()
     {
-        hitColliders = Physics.OverlapSphere(transform.position, radius, 4);
+        distanceToPlayer = Vector3.Distance(transform.position, GameManager.instance.player.transform.position);
         Sprint();
         if(followPlayer)
             agent.SetDestination(GameManager.instance.player.transform.position);
@@ -28,7 +28,7 @@ public class Monster : MonoBehaviour
 
     void Sprint()
     {
-        if(hitColliders.length > 0)
+        if(distanceToPlayer <= 5)
         {
             anim.SetBool("isFollowingPlayer", false);
             followPlayer = false;
