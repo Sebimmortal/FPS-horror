@@ -9,8 +9,6 @@ public class Monster : MonoBehaviour
     public NavMeshAgent agent;
     private bool followPlayer;
 
-    public float radius;
-
     private float distanceToPlayer;
 
     void Start()
