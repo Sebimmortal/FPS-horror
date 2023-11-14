@@ -140,7 +140,17 @@ public class Player : MonoBehaviour
             if(GetKeyDown(KeyCode.F))
                 if (Physics.Raycast(transform.position, cam.forward, out hit, Mathf.Infinity, 8))
                     Debug.DrawRay(transform.position, cam.forward * hit.distance, Color.red);
-
+    //         void OnTriggerStay ()
+    // {
+    //     if (lookingAtSelf)
+    //     {
+    //         if (Input.GetKeyDown("E"))
+    //         {
+    //             pressed = true;
+    //             anim.SetBool("Pressed", true);
+    //         }
+    //     }
+    // }
         }
     }
 }
