@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TutorialButton : MonoBehaviour
 {
-    private bool pressed:
-    public animator anim;
+    private bool pressed;
+    public Animator anim;
     public bool lookingAtSelf;
 
     void Start()
@@ -18,16 +18,19 @@ public class TutorialButton : MonoBehaviour
         lookingAtSelf = true;
     }
 
-    voic OnTriggerStay()
+    void OnTriggerExit()
     {
-        if(lookingAtSelf)
+        lookingAtSelf = false;
+    }
+
+    void OnTriggerStay ()
+    {
+        if (lookingAtSelf)
         {
-            if(Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown("E"))
             {
                 pressed = true;
-                anim.SetBool("Pressed", True);
-                yield return new WaitForSeconds(1);
-                anim.SetBool("DoneAnim", True);
+                anim.SetBool("Pressed", true);
             }
         }
     }
