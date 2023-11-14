@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     public int maxStamina;
     public bool doSprint;
     public Image staminaFill;
+    public Color[] colorAray;
+    public float timeAtLastColorUpdate;
+    public int curColor;
 
     public AudioClip[] audioClips;
     public AudioSource audioSource;
@@ -72,6 +75,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift) == false && doSprint)
         {
+            staminaFill.fillColor = colorAray[2];
             moveSpeed = 5;
             curStamina += (0.5f * Time.deltaTime);
 
@@ -84,7 +88,11 @@ public class Player : MonoBehaviour
 
         if (doSprint == false)
         {
-            moveSpeed = 2.5f;
+            if(Time.time - timeAtLastColorUpdate >= 0.5f)
+            {
+                curColor++;
+                staminaFill.fillColor = colorAray[curColor % 2];
+            }
             curStamina += (0.25f * Time.deltaTime);
             if (curStamina >= maxStamina)
             {
@@ -97,6 +105,7 @@ public class Player : MonoBehaviour
         {
             if (curStamina > 0 && doSprint == true)
             {
+                staminaFill.fillColor = colorAray[2];
                 curStamina -= (1 * Time.deltaTime);
                 moveSpeed = 10;
             }
@@ -138,8 +147,10 @@ public class Player : MonoBehaviour
             audioSource.PlayOneShot(audioClips[1]);
             
             if(GetKeyDown(KeyCode.F))
-                if (Physics.Raycast(transform.position, cam.forward, out hit, Mathf.Infinity, 8))
-                    Debug.DrawRay(transform.position, cam.forward * hit.distance, Color.red);
+                {
+                    if (Physics.Raycast(transform.position, cam.forward, out hit, Mathf.Infinity, 8))
+                        Debug.DrawRay(transform.position, cam.forward * hit.distance, Color.red);
+                }
     //         void OnTriggerStay ()
     // {
     //     if (lookingAtSelf)
