@@ -136,6 +136,11 @@ public class Player : MonoBehaviour
             else
                 nextIntensity = 0;
             audioSource.PlayOneShot(audioClips[1]);
+            
+            if(GetKeyDown(KeyCode.F))
+                if (Physics.Raycast(transform.position, cam.forward, out hit, Mathf.Infinity, 8))
+                    Debug.DrawRay(transform.position, cam.forward * hit.distance, Color.red);
+
         }
     }
 }
