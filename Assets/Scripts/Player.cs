@@ -142,12 +142,14 @@ public class Player : MonoBehaviour
             audioSource.PlayOneShot(audioClips[1]);
 
             if(GetKeyDown(KeyCode.F))
-                {
-                    moveSpeed = 0.5f;
-                    if (Physics.Raycast(transform.position, cam.forward, out hit, Mathf.Infinity, 8))
-                        Debug.DrawRay(transform.position, cam.forward * hit.distance, Color.red);
-                }
-
+             {
+                moveSpeed = 0.5f;
+                if (Physics.Raycast(transform.position, cam.forward, out hit, Mathf.Infinity, 8))
+                    Debug.DrawRay(transform.position, cam.forward * hit.distance, Color.red);
+            }
+        }
+    }
+}
     //         void OnTriggerStay ()
     // {
     //     if (lookingAtSelf)
@@ -159,6 +161,3 @@ public class Player : MonoBehaviour
     //         }
     //     }
     // }
-        }
-    }
-}
