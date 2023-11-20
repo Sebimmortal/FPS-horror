@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     private int monsterNums = 1;
     private int monstersSpawned = 0;
 
-    public Raycast hit;
+    public RaycastHit hit;
 
     void Start()
     {
@@ -140,13 +140,11 @@ public class Player : MonoBehaviour
             else
                 nextIntensity = 0;
             audioSource.PlayOneShot(audioClips[1]);
-
-            if(GetKeyDown(KeyCode.F))
-             {
-                moveSpeed = 0.5f;
-                if (Physics.Raycast(transform.position, cam.forward, out hit, Mathf.Infinity, 8))
-                    Debug.DrawRay(transform.position, cam.forward * hit.distance, Color.red);
-            }
+        }
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            if (Physics.Raycast(transform.position, cam.forward, out hit, Mathf.Infinity))
+                Debug.DrawRay(transform.position, cam.forward * hit.distance, Color.red);
         }
     }
 }
