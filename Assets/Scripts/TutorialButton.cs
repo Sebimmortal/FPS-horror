@@ -11,4 +11,10 @@ public class TutorialButton : MonoBehaviour
     {
         pressed = false;
     }    
+
+    void Press()
+    {
+        pressed = true;
+        anim.SetBool("pressed", false);
+    }
 }

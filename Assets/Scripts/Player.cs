@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
     private int monstersSpawned = 0;
 
     public RaycastHit hit;
+    public int buttonSet1AmountPressed;
+    public int buttonSet2AmountPressed;
 
     void Start()
     {
@@ -143,8 +145,17 @@ public class Player : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.F))
         {
-            if (Physics.Raycast(transform.position, cam.forward, out hit, Mathf.Infinity))
+            if (Physics.Raycast(transform.position, cam.forward, out hit, 4))
                 Debug.DrawRay(transform.position, cam.forward * hit.distance, Color.red);
+        }
+    }
+
+    void buttonSet1()
+    {
+        buttonSet1AmountPressed++;
+        if(buttonSet1 == 4;)
+        {
+            GameManager.instance.Door1.Door1Open();
         }
     }
 }
