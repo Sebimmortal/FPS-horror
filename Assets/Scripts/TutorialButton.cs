@@ -14,7 +14,11 @@ public class TutorialButton : MonoBehaviour
 
     void Press()
     {
-        pressed = true;
-        anim.SetBool("pressed", false);
+        if(pressed == false)
+        {
+            pressed = true;
+            anim.SetBool("pressed", true);
+            GameManager.instance.Player.buttonSet1();
+        }
     }
 }
