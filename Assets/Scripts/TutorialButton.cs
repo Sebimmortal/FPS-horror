@@ -18,7 +18,7 @@ public class TutorialButton : MonoBehaviour
         {
             pressed = true;
             anim.SetBool("pressed", true);
-            GameManager.instance.Player.buttonSet1(); 
+            GameManager.instance.Player.buttonSet1();
         }
     }
 }
