@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
     private int monsterNums = 1;
     private int monstersSpawned = 0;
 
+    public bool jumpscared;
+
     public RaycastHit hit;
     public int buttonSet1AmountPressed;
     public int buttonSet2AmountPressed;
@@ -44,8 +46,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Move();
-        Look();
+        if (jumpscared == true)
+        {
+            Move();
+            Look();
+        }
     }
 
     void Move()
@@ -160,6 +165,11 @@ public class Player : MonoBehaviour
         {
             buttonSet1AmountPressed = 4;
         }
+    }
+
+    void Jumpscare ()
+    {
+        jumpscared = true;
     }
 }
     //         void OnTriggerStay ()

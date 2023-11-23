@@ -30,6 +30,7 @@ public class Monster : MonoBehaviour
         {
             anim.SetBool("isFollowingPlayer", false);
             followPlayer = false;
+            GameManager.instance.player.
         }
         else
         {
