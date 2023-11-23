@@ -1,0 +1,71 @@
+name: Build
+
+on:
+  pull_request: {}
+  push: {}
+
+
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+  UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+  UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+#  UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+
+jobs:
+  build:
+    name: Build my project
+    runs-on: ubuntu-latest
+    steps:
+
+      # Checkout
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+    
+      # Cache
+      - uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
+      # Test
+      - name: Run tests
+        uses: game-ci/unity-test-runner@v2
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v2
+        with:
+          targetPlatform: WebGL
+          allowDirtyBuild: true
+          
+
+      # Output 
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build
+          path: build
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v1.0.7
+        with:
+         # Artifact name
+          name: development # optional, default is github-pages
+          # Path of the directory containing the static assets.
+          path: build # default is _site/
+          # Duration after which artifact will expire in days.
+          retention-days: 30 # optional, default is 1
+
+#      - name: Zip build
+#        run: |
+#          pushd build/StandaloneWindows64
+#          zip -r ../../StandaloneWindows64.zip .
+#          popd
+
+#      - uses: actions/upload-artifact@v2
+#        with:
+#          name: Upload Build
+#          path: StandaloneWindows64.zip
