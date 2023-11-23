@@ -3491,6 +3491,9 @@ MonoBehaviour:
   maxStamina: 2
   doSprint: 1
   staminaFill: {fileID: 1921163401}
+  colorAray: []
+  timeAtLastColorUpdate: 0
+  curColor: 0
   audioClips:
   - {fileID: 8300000, guid: cd6eca0b2529d71499073a3d9045f7c1, type: 3}
   - {fileID: 8300000, guid: 0fde471fb87aa004f9f87fcc1fcf329b, type: 3}
@@ -3502,6 +3505,8 @@ MonoBehaviour:
   light: {fileID: 1711189035}
   nextIntensity: 10
   monster: {fileID: 278826321731021900, guid: 1ecfc31570343a140a188d79652519aa, type: 3}
+  buttonSet1AmountPressed: 0
+  buttonSet2AmountPressed: 0
 --- !u!143 &450173533
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3997,6 +4002,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 450173532}
+  door1: {fileID: 0}
+  door2: {fileID: 0}
 --- !u!4 &503558494
 Transform:
   m_ObjectHideFlags: 0
@@ -8702,7 +8709,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3564875037467232098, guid: e7a80d8b3e3038e4aad995a76de3ce5f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -79.903
+      value: -91.96
       objectReference: {fileID: 0}
     - target: {fileID: 3564875037467232098, guid: e7a80d8b3e3038e4aad995a76de3ce5f, type: 3}
       propertyPath: m_LocalRotation.w

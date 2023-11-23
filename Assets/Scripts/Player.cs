@@ -153,9 +153,9 @@ public class Player : MonoBehaviour
     void buttonSet1()
     {
         buttonSet1AmountPressed++;
-        if(buttonSet1 == 4;)
+        if(buttonSet1AmountPressed == 4);
         {
-            GameManager.instance.Door1.Door1Open();
+            buttonSet1AmountPressed = 4;
         }
     }
 }
