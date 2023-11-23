@@ -145,8 +145,11 @@ public class Player : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.F))
         {
-            if (Physics.Raycast(transform.position, cam.forward, out hit, 4))
-                Debug.DrawRay(transform.position, cam.forward * hit.distance, Color.red);
+            if (1 == 0)
+            {
+                if (Physics.Raycast(transform.position, cam.forward, out hit, 4))
+                    Debug.DrawRay(transform.position, cam.forward * hit.distance, Color.red);
+            }
         }
     }
 
