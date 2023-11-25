@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     public AudioClip[] audioClips;
     public AudioSource audioSource;
 
+    public int collidersInteractedWith = 0;
+
     public Transform cam;
     public float lookSensitivity;
     public float minXRot;
@@ -46,7 +48,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (jumpscared == true)
+        if (jumpscared == false)
         {
             Move();
             Look();
@@ -73,7 +75,14 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (monstersSpawned != monsterNums)
+        if(collidersInteractedWith == 0)
+        {
+            transform.position = new Vector3(-72.5f, 1, -80);
+            collidersInteractedWith++;
+            Debug.Log(transform.position);
+            Debug.Log(collidersInteractedWith);
+        }
+        else if (monstersSpawned != monsterNums && collidersInteractedWith == 1)
         {
             Instantiate(monster, new Vector3(-67.5f, 0, 22.5f), Quaternion.identity);
             monstersSpawned += 1;
