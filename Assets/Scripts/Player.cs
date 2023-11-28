@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     public AudioClip[] audioClips;
     public AudioSource audioSource;
 
+    public bool inBeta;
+
     public int collidersInteractedWith = 0;
 
     public Transform cam;
@@ -29,6 +31,8 @@ public class Player : MonoBehaviour
 
     public Light light;
     public int nextIntensity;
+
+    public bool doMove;
 
     public GameObject monster;
     private int monsterNums = 1;
@@ -66,19 +70,24 @@ public class Player : MonoBehaviour
         Sprint();
 
         dir *= moveSpeed * Time.deltaTime;
-
-        controller.Move(dir);
-
-
-
+        if (doMove)
+            controller.Move(dir);
+        else
+            dir = transform.position;
+            doMove = true;
     }
 
     void OnTriggerEnter(Collider other)
     {
+        if (inBeta)
+            collidersInteractedWith = 1;
+
         if(collidersInteractedWith == 0)
         {
+            doMove = false;
             transform.position = new Vector3(-72.5f, 1, -80);
             collidersInteractedWith++;
+            
             Debug.Log(transform.position);
             Debug.Log(collidersInteractedWith);
         }
@@ -123,7 +132,8 @@ public class Player : MonoBehaviour
             if (curStamina <= 0)
             {
                 doSprint = false;
-                Breath();
+                if(inBeta == false)
+                    Breath();
             }
         }
 
@@ -155,7 +165,9 @@ public class Player : MonoBehaviour
                 nextIntensity = 10;
             else
                 nextIntensity = 0;
-            audioSource.PlayOneShot(audioClips[1]);
+            
+            if(inBeta == true)
+                audioSource.PlayOneShot(audioClips[1]);
         }
         if(Input.GetKeyDown(KeyCode.F))
         {
