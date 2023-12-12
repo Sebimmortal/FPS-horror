@@ -21,10 +21,10 @@ Monster: [insert person who made monster models name here] Link to the monster m
 ## Controls
 The reason this is here is because i currently dont have an actual tutorial in my game yet. So here is the controls:
 
-Left: A
-Right: D
-Forward: W
-Backward: S
-Sprint: Left Shift
-Look: Mouse
-Toggle Flashlight: LMB
+Left: A  
+Right: D  
+Forward: W  
+Look: Mouse  
+Backward: S  
+Sprint: Left Shift  
+Toggle Flashlight: LMB  
