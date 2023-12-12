@@ -9,15 +9,6 @@ To install my game, you will need to go to [the latest release](https://github.c
 
 Have Fun!
 
-## Credits
-
-Programing: Sebimmortal  
-Textures: Sebimmortal  
-Flashlight model: Sebimmortal  
-Animations: Sebimmortal  
-Monster: [insert person who made monster models name here] Link to the monster model [here](https://idk.idk/idk/idk/ihavenocluerightnow).
-
-
 ## Controls
 The reason this is here is because i currently dont have an actual tutorial in my game yet. So here is the controls:
 
@@ -28,3 +19,11 @@ Look: Mouse
 Backward: S  
 Sprint: Left Shift  
 Toggle Flashlight: LMB  
+
+## Credits
+
+Programing: Sebimmortal  
+Textures: Sebimmortal  
+Flashlight model: Sebimmortal  
+Animations: Sebimmortal  
+Monster: [insert person who made monster models name here] Link to the monster model [here](https://idk.idk/idk/idk/ihavenocluerightnow).
