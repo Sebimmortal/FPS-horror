@@ -9,8 +9,6 @@ To install my game, you will need to go to [the latest release](https://github.c
 
 Have Fun!
 
----
-
 # Credits
 
 Programing: Sebimmortal  
