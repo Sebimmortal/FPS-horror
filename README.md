@@ -16,4 +16,4 @@ Programing: Sebimmortal
 Textures: Sebimmortal  
 Flashlight model: Sebimmortal  
 Animations: Sebimmortal  
-Monster: [insert person who made monster models name here] Link to the monster model [here](idk.idk/idk/idk/ihavenocluerightnow).
+Monster: [insert person who made monster models name here] Link to the monster model [here](https://idk.idk/idk/idk/ihavenocluerightnow).
