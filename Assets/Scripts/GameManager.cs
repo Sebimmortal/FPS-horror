@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public Player player;
+    public Monster monster;
     public Door door1;
     public Door door2;
 

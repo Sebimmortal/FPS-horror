@@ -14,6 +14,7 @@ public class Monster : MonoBehaviour
     void Start()
     {
         transform.Rotate(0, 90, 0);
+        anim.SetBool("Jumpscare", false);
     }
 
     void Update()
@@ -36,5 +37,10 @@ public class Monster : MonoBehaviour
             anim.SetBool("isFollowingPlayer", true);
             followPlayer = true;
         }
+    }
+
+    void Jumscare()
+    {
+        anim.SetBool("Jumscare", true);
     }
 }
