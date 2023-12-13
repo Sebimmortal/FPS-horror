@@ -42,5 +42,6 @@ public class Monster : MonoBehaviour
     void Jumscare()
     {
         anim.SetBool("Jumscare", true);
+        Transform.LookAt(GameManager.instance.player.transform.position);
     }
 }

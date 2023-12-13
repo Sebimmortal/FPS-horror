@@ -191,7 +191,7 @@ public class Player : MonoBehaviour
     void Jumpscare ()
     {
         jumpscared = true;
-        Transform.LookAt(GameManager.instance.monster.position)
+        Transform.LookAt(GameManager.instance.monster.transform.position);
     }
 }
     //         void OnTriggerStay ()
