@@ -31,6 +31,8 @@ public class Monster : MonoBehaviour
         {
             anim.SetBool("isFollowingPlayer", false);
             followPlayer = false;
+            Jumpscare();
+            GameManager.instance.player.Jumpscare();
         }
         else
         {
@@ -39,9 +41,9 @@ public class Monster : MonoBehaviour
         }
     }
 
-    void Jumscare()
+    void Jumpscare()
     {
-        anim.SetBool("Jumscare", true);
-        Transform.LookAt(GameManager.instance.player.transform.position);
+        anim.SetBool("Jumpscare", true);
+        transform.LookAt(GameManager.instance.player.transform.position);
     }
 }

@@ -79,22 +79,18 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (inBeta)
-            collidersInteractedWith = 1;
-
-        if(collidersInteractedWith == 0)
+        if(scene.name == Scene1)
         {
-            doMove = false;
-            transform.position = new Vector3(-72.5f, 1, -80);
-            collidersInteractedWith++;
-            
-            Debug.Log(transform.position);
-            Debug.Log(collidersInteractedWith);
+            SceneManager.LoadScene("Scene2");
         }
-        else if (monstersSpawned != monsterNums && collidersInteractedWith == 1)
+
+        if(scene.name == Scene2)
         {
-            Instantiate(monster, new Vector3(-67.5f, 0, 22.5f), Quaternion.identity);
-            monstersSpawned += 1;
+            if(monstersSpawned != monsterNums && collidersInteractedWith == 1)
+            {
+                Instantiate(monster, new Vector3(-67.5f, 0, 22.5f), Quaternion.identity);
+                monstersSpawned += 1;
+            }
         }
     }
 
@@ -191,7 +187,7 @@ public class Player : MonoBehaviour
     void Jumpscare ()
     {
         jumpscared = true;
-        Transform.LookAt(GameManager.instance.monster.transform.position);
+        transform.LookAt(GameManager.instance.monster.transform.position);
     }
 }
     //         void OnTriggerStay ()
