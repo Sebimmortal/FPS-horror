@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -20,8 +21,6 @@ public class Player : MonoBehaviour
     public AudioSource audioSource;
 
     public bool inBeta;
-
-    public int collidersInteractedWith = 0;
 
     public Transform cam;
     public float lookSensitivity;
@@ -79,14 +78,14 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(scene.name == Scene1)
+        if(SceneManager.GetActiveScene().name == "Scene1")
         {
             SceneManager.LoadScene("Scene2");
         }
 
-        if(scene.name == Scene2)
+        if(SceneManager.GetActiveScene().name == "Scene2")
         {
-            if(monstersSpawned != monsterNums && collidersInteractedWith == 1)
+            if(monstersSpawned != monsterNums)
             {
                 Instantiate(monster, new Vector3(-67.5f, 0, 22.5f), Quaternion.identity);
                 monstersSpawned += 1;
@@ -174,8 +173,8 @@ public class Player : MonoBehaviour
             }
         }
     }
-
-    void buttonSet1()
+    
+    void buttonSet1() 
     {
         buttonSet1AmountPressed++;
         if(buttonSet1AmountPressed == 4);
@@ -184,10 +183,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Jumpscare ()
+    public void Jumpscare ()
     {
         jumpscared = true;
         transform.LookAt(GameManager.instance.monster.transform.position);
+        transform.Rotate(0, 180, 0);
     }
 }
     //         void OnTriggerStay ()

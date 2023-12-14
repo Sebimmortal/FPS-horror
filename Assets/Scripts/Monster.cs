@@ -10,40 +10,52 @@ public class Monster : MonoBehaviour
     private bool followPlayer;
 
     private float distanceToPlayer;
+    public bool jumpscared;
+    public GameObject monsterkill;
 
     void Start()
     {
         transform.Rotate(0, 90, 0);
         anim.SetBool("Jumpscare", false);
+        jumpscared = false;
     }
 
     void Update()
     {
         distanceToPlayer = Vector3.Distance(transform.position, GameManager.instance.player.transform.position);
         Sprint();
-        if(followPlayer)
-            agent.SetDestination(GameManager.instance.player.transform.position);
+        if (followPlayer)
+        {
+            if (jumpscared)
+                agent.SetDestination(transform.position);
+            else
+                agent.SetDestination(GameManager.instance.player.transform.position);
+        }
     }
 
     void Sprint()
     {
-        if(distanceToPlayer <= 5)
+        if(jumpscared == false)
         {
-            anim.SetBool("isFollowingPlayer", false);
-            followPlayer = false;
-            Jumpscare();
-            GameManager.instance.player.Jumpscare();
-        }
-        else
-        {
-            anim.SetBool("isFollowingPlayer", true);
-            followPlayer = true;
+            if (distanceToPlayer <= 5)
+            {
+                anim.SetBool("isFollowingPlayer", false);
+                followPlayer = false;
+                Jumpscare();
+                GameManager.instance.player.Jumpscare();
+            }
+            else
+            {
+                anim.SetBool("isFollowingPlayer", true);
+                followPlayer = true;
+            }
         }
     }
 
     void Jumpscare()
     {
         anim.SetBool("Jumpscare", true);
-        transform.LookAt(GameManager.instance.player.transform.position);
+        jumpscared = true;
+        transform.position -= transform.forward * -1;
     }
 }
