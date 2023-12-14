@@ -127,8 +127,8 @@ public class Player : MonoBehaviour
             if (curStamina <= 0)
             {
                 doSprint = false;
-                if(inBeta == false)
-                    Breath();
+                
+                Breath();
             }
         }
 
@@ -139,7 +139,10 @@ public class Player : MonoBehaviour
 
     void Breath()
     {
-        audioSource.PlayOneShot(audioClips[0]);
+        if (!inBeta)
+        {
+            audioSource.PlayOneShot(audioClips[0]);
+        }
     }
 
     void Look()
@@ -161,12 +164,12 @@ public class Player : MonoBehaviour
             else
                 nextIntensity = 0;
             
-            if(inBeta == true)
+            if(inBeta == false)
                 audioSource.PlayOneShot(audioClips[1]);
         }
         if(Input.GetKeyDown(KeyCode.F))
         {
-            if (1 == 0)
+            if (!inBeta)
             {
                 if (Physics.Raycast(transform.position, cam.forward, out hit, 4))
                     Debug.DrawRay(transform.position, cam.forward * hit.distance, Color.red);
