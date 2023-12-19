@@ -7,16 +7,14 @@ public class Monster : MonoBehaviour
 {
     public Animator anim;
     public NavMeshAgent agent;
-    private bool followPlayer;
 
     private float distanceToPlayer;
     public bool jumpscared;
-    public GameObject monsterkill;
+    public GameObject monsterKill;
 
     void Start()
     {
         transform.Rotate(0, 90, 0);
-        anim.SetBool("Jumpscare", false);
         jumpscared = false;
     }
 
@@ -24,38 +22,32 @@ public class Monster : MonoBehaviour
     {
         distanceToPlayer = Vector3.Distance(transform.position, GameManager.instance.player.transform.position);
         Sprint();
-        if (followPlayer)
+        if (!jumpscared)
         {
-            if (jumpscared)
-                agent.SetDestination(transform.position);
-            else
-                agent.SetDestination(GameManager.instance.player.transform.position);
+            agent.SetDestination(GameManager.instance.player.transform.position);
         }
     }
 
     void Sprint()
     {
-        if(jumpscared == false)
+        if(!jumpscared)
         {
             if (distanceToPlayer <= 5)
             {
-                anim.SetBool("isFollowingPlayer", false);
-                followPlayer = false;
-                Jumpscare();
                 GameManager.instance.player.Jumpscare();
+                Jumpscare();
             }
             else
             {
                 anim.SetBool("isFollowingPlayer", true);
-                followPlayer = true;
             }
         }
     }
 
     void Jumpscare()
     {
-        anim.SetBool("Jumpscare", true);
         jumpscared = true;
-        transform.position -= transform.forward * -1;
+        Instantiate(monsterKill, transform.position, Quaternion.identity, GameManager.instance.player.transform);
+        Destroy(gameObject);
     }
 }

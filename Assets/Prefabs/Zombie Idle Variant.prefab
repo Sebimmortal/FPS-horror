@@ -101,7 +101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 110713413679613176}
   agent: {fileID: -9052328176986237979}
-  radius: 10
+  jumpscared: 0
+  monsterKill: {fileID: 5810302009320442464, guid: cc38e6758dcee8341b54c93279f62c0b, type: 3}
 --- !u!95 &110713413679613176
 Animator:
   serializedVersion: 5
