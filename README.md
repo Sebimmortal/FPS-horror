@@ -1,4 +1,4 @@
-# FPS HORROR
+# FP HORROR
 
 This game was made for my friend logan. All of the programing was done by me.
 
