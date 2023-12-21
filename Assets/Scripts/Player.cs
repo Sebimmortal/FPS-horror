@@ -59,8 +59,7 @@ public class Player : MonoBehaviour
     private string[] scenePaths;
 
     void Start()
-    {
-        Screen.fullScreen = true;
+    { 
 
         if (SceneManager.GetActiveScene().name == "Lobby")
         {
